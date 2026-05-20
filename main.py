@@ -5,15 +5,14 @@ from scipy.spatial import distance
 import os
 import threading
 
-# MediaPipe Face Mesh
+
 mp_face_mesh = mp.solutions.face_mesh
 face_mesh = mp_face_mesh.FaceMesh(refine_landmarks=True)
 
-# Eye landmark points
+
 LEFT_EYE = [33, 160, 158, 133, 153, 144]
 RIGHT_EYE = [362, 385, 387, 263, 373, 380]
 
-# Voice function
 def speak_alert():
 
     os.system(
@@ -21,7 +20,7 @@ def speak_alert():
         '(New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak(\'Wake up\')}"'
     )
 
-# EAR function
+# EAR 
 def eye_aspect_ratio(eye_points, landmarks):
 
     p1 = np.array(landmarks[eye_points[0]])
@@ -107,7 +106,7 @@ while True:
                 sleep_counter = 0
                 voice_alert = False
 
-            # Trigger sleep alert
+            #sleep alert
             if sleep_counter > 5:
 
                 status = "SLEEP DETECTED!"
@@ -151,7 +150,7 @@ while True:
     # Show frame
     cv2.imshow("Sleep Detector", frame)
 
-    # Quit
+    # End
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
